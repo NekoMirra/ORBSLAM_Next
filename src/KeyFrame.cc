@@ -1,21 +1,4 @@
-/**
-* This file is part of ORB-LINE-SLAM
-*
-* Copyright (C) 2020-2021 John Alamanos, National Technical University of Athens.
-* Copyright (C) 2017-2020 Carlos Campos, Richard Elvira, Juan J. Gómez Rodríguez, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
-* Copyright (C) 2014-2016 Raúl Mur-Artal, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
-*
-* ORB-LINE-SLAM is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
-* License as published by the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* ORB-LINE-SLAM is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
-* the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License along with ORB-LINE-SLAM.
-* If not, see <http://www.gnu.org/licenses/>.
-*/
+
 
 #include "KeyFrame.h"
 #include "Converter.h"

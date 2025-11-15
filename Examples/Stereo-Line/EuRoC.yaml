@@ -5,7 +5,7 @@
 #--------------------------------------------------------------------------------------------
 Camera.type: "PinHole"
 
-# Camera calibration and distortion parameters (OpenCV) 
+# Camera calibration and distortion parameters (OpenCV) (equal for both cameras after stereo rectification)
 Camera.fx: 435.2046959714599
 Camera.fy: 435.2046959714599
 Camera.cx: 367.4517211914062
@@ -15,8 +15,6 @@ Camera.k1: 0.0
 Camera.k2: 0.0
 Camera.p1: 0.0
 Camera.p2: 0.0
-
-Camera.bFishEye: 0
 
 Camera.width: 752
 Camera.height: 480
@@ -31,7 +29,24 @@ Camera.bf: 47.90639384423901
 Camera.RGB: 1
 
 # Close/Far threshold. Baseline times.
-ThDepth: 35.0
+ThDepth: 60.0 # 35
+
+# Transformation from camera 0 to body-frame (imu)
+Tbc: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: f
+   data: [0.0148655429818, -0.999880929698, 0.00414029679422, -0.0216401454975,
+         0.999557249008, 0.0149672133247, 0.025715529948, -0.064676986768,
+        -0.0257744366974, 0.00375618835797, 0.999660727178, 0.00981073058949,
+         0.0, 0.0, 0.0, 1.0]
+
+# IMU noise
+IMU.NoiseGyro: 1.7e-04 # 1.6968e-04 
+IMU.NoiseAcc: 2.0e-03 # 2.0000e-3
+IMU.GyroWalk: 1.9393e-05 
+IMU.AccWalk: 3.e-03 # 3.0000e-3
+IMU.Frequency: 200
 
 #--------------------------------------------------------------------------------------------
 # Stereo Rectification. Only if you need to pre-rectify the images.
@@ -53,6 +68,11 @@ LEFT.R:  !!opencv-matrix
    rows: 3
    cols: 3
    dt: d
+   data: [0.999966347530033, -0.001422739138722922, 0.008079580483432283, 0.001365741834644127, 0.9999741760894847, 0.007055629199258132, -0.008089410156878961, -0.007044357138835809, 0.9999424675829176]
+LEFT.Rf:  !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: f
    data: [0.999966347530033, -0.001422739138722922, 0.008079580483432283, 0.001365741834644127, 0.9999741760894847, 0.007055629199258132, -0.008089410156878961, -0.007044357138835809, 0.9999424675829176]
 LEFT.P:  !!opencv-matrix
    rows: 3
@@ -119,14 +139,15 @@ SLAM             : 0
 #--------------------------------------------------------------------------------------------
 extractor        : 0
 
+
 #--------------------------------------------------------------------------------------------
 # Line Extractor Parameters
 # You can decrease the lsd_scale parameter in order to decrease computational time e.g. lsd_scale->0.6 or lsd_scale->0.5
 # Also in order to decrease computational time you can set levels to 1
 #--------------------------------------------------------------------------------------------
-nfeatures        : 0    # Number of Line Features (set to 0 if keeping all lines) -> Used for LSD and ED
+nfeatures        : 0     # Number of Line Features (set to 0 if keeping all lines) -> Used for LSD and ED
 lsd_refine       : 0     # -> Used Only for LSD
-lsd_scale        : 0.8  # The scale of the image that will be used to find the lines. Range (0..1.0] -> Used Only for LSD
+lsd_scale        : 1.0   # The scale of the image that will be used to find the lines. Range (0..1.0] -> Used Only for LSD
 levels           : 2     # Levels of the Pyramid (Only 1 and 2 can be selected) -> Used for LSD and ED
 scale            : 2.0   # Scale factor between levels in the scale pyramid -> Used for LSD and ED
 
@@ -136,7 +157,7 @@ scale            : 2.0   # Scale factor between levels in the scale pyramid -> U
 Viewer.KeyFrameSize: 0.05
 Viewer.KeyFrameLineWidth: 1
 Viewer.GraphLineWidth: 0.9
-Viewer.PointSize:2
+Viewer.PointSize: 2
 Viewer.CameraSize: 0.08
 Viewer.CameraLineWidth: 3
 Viewer.ViewpointX: 0

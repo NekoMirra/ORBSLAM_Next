@@ -1,0 +1,1 @@
+./Examples/Stereo-Line/stereo_line_euroc ./Vocabulary/ORBvoc.txt ./Vocabulary/LSDvoc.txt ./Examples/Stereo-Line/EuRoC.yaml /home/slam/dataset/MH_01_easy ./Examples/Stereo-Line/EuRoC_TimeStamps/MH01.txt

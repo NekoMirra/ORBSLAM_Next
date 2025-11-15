@@ -1,24 +1,3 @@
-/**
-* This file is part of ORB-LINE-SLAM
-*
-* Copyright (C) 2020-2021 John Alamanos, National Technical University of Athens.
-* Copyright (C) 2017-2020 Carlos Campos, Richard Elvira, Juan J. Gómez Rodríguez, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
-* Copyright (C) 2014-2016 Raúl Mur-Artal, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
-*
-* ORB-LINE-SLAM is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
-* License as published by the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* ORB-LINE-SLAM is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
-* the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License along with ORB-LINE-SLAM.
-* If not, see <http://www.gnu.org/licenses/>.
-*/
-
-
-
 #include "System.h"
 #include "Converter.h"
 #include <thread>
@@ -44,14 +23,7 @@ System::System(const string &strVocFile_ORB, const string &strVocFile_Line, cons
     mSensor(sensor), mpViewer(static_cast<Viewer*>(NULL)), mbReset(false), mbResetActiveMap(false),
     mbActivateLocalizationMode(false), mbDeactivateLocalizationMode(false)
 {
-    // Output welcome message
-    cout << endl << 
-    "ORB-LINE-SLAM Copyright (C) 2020-2021 John Alamanos, National Technical University of Athens." << endl <<
-    "ORB-SLAM3 Copyright (C) 2017-2020 Carlos Campos, Richard Elvira, Juan J. Gómez, José M.M. Montiel and Juan D. Tardós, University of Zaragoza." << endl <<
-    "ORB-SLAM2 Copyright (C) 2014-2016 Raúl Mur-Artal, José M.M. Montiel and Juan D. Tardós, University of Zaragoza." << endl <<
-    "This program comes with ABSOLUTELY NO WARRANTY;" << endl  <<
-    "This is free software, and you are welcome to redistribute it" << endl <<
-    "under certain conditions. See LICENSE.txt." << endl << endl;
+
 
     cout << "Input sensor was set to: ";
 
@@ -112,17 +84,17 @@ System::System(const string &strVocFile_ORB, const string &strVocFile_Line, cons
     mpAtlas = new Atlas(0);
     //----
 
-    /*if(strLoadingFile.empty())
+  if(strLoadingFile.empty())
     {
         //Load ORB Vocabulary
         cout << endl << "Loading ORB Vocabulary. This could take a while..." << endl;
 
         mpVocabulary = new ORBVocabulary();
-        bool bVocLoad = mpVocabulary->loadFromTextFile(strVocFile);
+        bool bVocLoad = mpVocabulary->loadFromTextFile(strVocFile_ORB);
         if(!bVocLoad)
         {
             cerr << "Wrong path to vocabulary. " << endl;
-            cerr << "Falied to open at: " << strVocFile << endl;
+            cerr << "Falied to open at: " << strVocFile_ORB<< endl;
             exit(-1);
         }
         cout << "Vocabulary loaded!" << endl << endl;
@@ -140,11 +112,11 @@ System::System(const string &strVocFile_ORB, const string &strVocFile_Line, cons
         cout << endl << "Loading ORB Vocabulary. This could take a while..." << endl;
 
         mpVocabulary = new ORBVocabulary();
-        bool bVocLoad = mpVocabulary->loadFromTextFile(strVocFile);
+        bool bVocLoad = mpVocabulary->loadFromTextFile(strVocFile_ORB);
         if(!bVocLoad)
         {
             cerr << "Wrong path to vocabulary. " << endl;
-            cerr << "Falied to open at: " << strVocFile << endl;
+            cerr << "Falied to open at: " << strVocFile_ORB << endl;
             exit(-1);
         }
         cout << "Vocabulary loaded!" << endl << endl;
@@ -153,7 +125,7 @@ System::System(const string &strVocFile_ORB, const string &strVocFile_Line, cons
 
         // Load the file with an earlier session
         //clock_t start = clock();
-        bool isRead = LoadAtlas(strLoadingFile,BINARY_FILE);
+        /*bool isRead = loadedAtlas(strLoadingFile,BINARY_FILE);
 
         if(!isRead)
         {
@@ -169,14 +141,14 @@ System::System(const string &strVocFile_ORB, const string &strVocFile_Line, cons
 
         loadedAtlas = true;
 
-        mpAtlas->CreateNewMap();
+        mpAtlas->CreateNewMap();*/
 
         //clock_t timeElapsed = clock() - start;
         //unsigned msElapsed = timeElapsed / (CLOCKS_PER_SEC / 1000);
         //cout << "Binary file read in " << msElapsed << " ms" << endl;
 
         //usleep(10*1000*1000);
-    }*/
+    }
 
 
     if (mSensor==IMU_STEREO || mSensor==IMU_MONOCULAR)
@@ -296,7 +268,7 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
     mpAtlas = new Atlas(0);
     //----
 
-    /*if(strLoadingFile.empty())
+    if(strLoadingFile.empty())
     {
         //Load ORB Vocabulary
         cout << endl << "Loading ORB Vocabulary. This could take a while..." << endl;
@@ -337,7 +309,7 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
 
         // Load the file with an earlier session
         //clock_t start = clock();
-        bool isRead = LoadAtlas(strLoadingFile,BINARY_FILE);
+       /*bool isRead = loadedAtlas(strLoadingFile,BINARY_FILE);
 
         if(!isRead)
         {
@@ -353,14 +325,14 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
 
         loadedAtlas = true;
 
-        mpAtlas->CreateNewMap();
+        mpAtlas->CreateNewMap();*/ 
 
         //clock_t timeElapsed = clock() - start;
         //unsigned msElapsed = timeElapsed / (CLOCKS_PER_SEC / 1000);
         //cout << "Binary file read in " << msElapsed << " ms" << endl;
 
         //usleep(10*1000*1000);
-    }*/
+    }
 
 
     if (mSensor==IMU_STEREO || mSensor==IMU_MONOCULAR)
@@ -773,7 +745,7 @@ void System::SaveTrajectoryEuRoC(const string &filename)
 {
 
     cout << endl << "Saving trajectory to " << filename << " ..." << endl;
-    /*if(mSensor==MONOCULAR)
+/*f(mSensor==MONOCULAR)
     {
         cerr << "ERROR: SaveTrajectoryEuRoC cannot be used for monocular." << endl;
         return;
@@ -823,7 +795,7 @@ void System::SaveTrajectoryEuRoC(const string &filename)
     //cout << "size mpTracker->mlbLost: " << mpTracker->mlbLost.size() << endl;
 
 
-    for(list<cv::Mat>::iterator lit=mpTracker->mlRelativeFramePoses.begin(),
+ for(list<cv::Mat>::iterator lit=mpTracker->mlRelativeFramePoses.begin(),
         lend=mpTracker->mlRelativeFramePoses.end();lit!=lend;lit++, lRit++, lT++, lbL++)
     {
         //cout << "1" << endl;
@@ -831,12 +803,12 @@ void System::SaveTrajectoryEuRoC(const string &filename)
             continue;
 
 
-        KeyFrame* pKF = *lRit;
+       KeyFrame* pKF = *lRit;
         //cout << "KF: " << pKF->mnId << endl;
 
         cv::Mat Trw = cv::Mat::eye(4,4,CV_32F);
 
-        /*cout << "2" << endl;
+     /*  cout << "2" << endl;
         cout << "KF id: " << pKF->mnId << endl;*/
 
         // If the reference keyframe was culled, traverse the spanning tree to get a suitable keyframe.
@@ -852,15 +824,15 @@ void System::SaveTrajectoryEuRoC(const string &filename)
             pKF = pKF->GetParent();
             //cout << "--Parent KF: " << pKF->mnId << endl;
         }
-
+/*
         if(!pKF || pKF->GetMap() != pBiggerMap)
         {
             //cout << "--Parent KF is from another map" << endl;
-            /*if(pKF)
-                cout << "--Parent KF " << pKF->mnId << " is from another map " << pKF->GetMap()->GetId() << endl;*/
+            if(pKF)
+                cout << "--Parent KF " << pKF->mnId << " is from another map " << pKF->GetMap()->GetId() << endl;
             continue;
         }
-
+*/
         //cout << "3" << endl;
 
         Trw = Trw*pKF->GetPose()*Twb; // Tcp*Tpw*Twb0=Tcb0 where b0 is the new world reference
@@ -873,7 +845,7 @@ void System::SaveTrajectoryEuRoC(const string &filename)
             cv::Mat Rwb = Tbw.rowRange(0,3).colRange(0,3).t();
             cv::Mat twb = -Rwb*Tbw.rowRange(0,3).col(3);
             vector<float> q = Converter::toQuaternion(Rwb);
-            f << setprecision(6) << 1e9*(*lT) << " " <<  setprecision(9) << twb.at<float>(0) << " " << twb.at<float>(1) << " " << twb.at<float>(2) << " " << q[0] << " " << q[1] << " " << q[2] << " " << q[3] << endl;
+            f << setprecision(6) << 1*(*lT) << " " <<  setprecision(9) << twb.at<float>(0) << " " << twb.at<float>(1) << " " << twb.at<float>(2) << " " << q[0] << " " << q[1] << " " << q[2] << " " << q[3] << endl;
         }
         else
         {
@@ -881,7 +853,7 @@ void System::SaveTrajectoryEuRoC(const string &filename)
             cv::Mat Rwc = Tcw.rowRange(0,3).colRange(0,3).t();
             cv::Mat twc = -Rwc*Tcw.rowRange(0,3).col(3);
             vector<float> q = Converter::toQuaternion(Rwc);
-            f << setprecision(6) << 1e9*(*lT) << " " <<  setprecision(9) << twc.at<float>(0) << " " << twc.at<float>(1) << " " << twc.at<float>(2) << " " << q[0] << " " << q[1] << " " << q[2] << " " << q[3] << endl;
+            f << setprecision(6) << 1*(*lT) << " " <<  setprecision(9) << twc.at<float>(0) << " " << twc.at<float>(1) << " " << twc.at<float>(2) << " " << q[0] << " " << q[1] << " " << q[2] << " " << q[3] << endl;
         }
 
         // cout << "5" << endl;
@@ -929,7 +901,7 @@ void System::SaveKeyFrameTrajectoryEuRoC(const string &filename)
             cv::Mat R = pKF->GetImuRotation().t();
             vector<float> q = Converter::toQuaternion(R);
             cv::Mat twb = pKF->GetImuPosition();
-            f << setprecision(6) << 1e9*pKF->mTimeStamp  << " " <<  setprecision(9) << twb.at<float>(0) << " " << twb.at<float>(1) << " " << twb.at<float>(2) << " " << q[0] << " " << q[1] << " " << q[2] << " " << q[3] << endl;
+            f << setprecision(6) << 1*pKF->mTimeStamp  << " " <<  setprecision(9) << twb.at<float>(0) << " " << twb.at<float>(1) << " " << twb.at<float>(2) << " " << q[0] << " " << q[1] << " " << q[2] << " " << q[3] << endl;
 
         }
         else
@@ -937,7 +909,7 @@ void System::SaveKeyFrameTrajectoryEuRoC(const string &filename)
             cv::Mat R = pKF->GetRotation();
             vector<float> q = Converter::toQuaternion(R);
             cv::Mat t = pKF->GetCameraCenter();
-            f << setprecision(6) << 1e9*pKF->mTimeStamp << " " <<  setprecision(9) << t.at<float>(0) << " " << t.at<float>(1) << " " << t.at<float>(2) << " " << q[0] << " " << q[1] << " " << q[2] << " " << q[3] << endl;
+            f << setprecision(6) << 1*pKF->mTimeStamp << " " <<  setprecision(9) << t.at<float>(0) << " " << t.at<float>(1) << " " << t.at<float>(2) << " " << q[0] << " " << q[1] << " " << q[2] << " " << q[3] << endl;
         }
     }
     f.close();
@@ -1113,7 +1085,8 @@ void System::ChangeDataset()
     mpTracker->NewDataset();
 }
 
-/*void System::SaveAtlas(int type){
+/*void System::SaveAtlas(int type)
+{
     cout << endl << "Enter the name of the file if you want to save the current Atlas session. To exit press ENTER: ";
     string saveFileName;
     getline(cin,saveFileName);
@@ -1125,7 +1098,7 @@ void System::ChangeDataset()
         mpAtlas->PreSave();
         mpKeyFrameDatabase->PreSave();
 
-        string pathSaveFileName = "./";
+        string pathSaveFileName = "";
         pathSaveFileName = pathSaveFileName.append(saveFileName);
         pathSaveFileName = pathSaveFileName.append(".osa");
 
