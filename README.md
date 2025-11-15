@@ -1,3 +1,17 @@
+> **说明（2025-11 更新）**
+> - **运行环境**：近期在 Ubuntu 24.04 LTS（GCC 13.2、CMake 3.28、OpenCV 4.x、Pangolin 0.8、Eigen 3.4、Python 3.12 + NumPy）验证可用，旧版 README 中列出的 Ubuntu 18.04 / OpenCV 3 组合同样兼容。
+> - **需手动补齐的大文件**：受 GitHub 100 MB 限制，`Vocabulary/ORBvoc.txt`（≈140 MB）与 `Vocabulary/LSDvoc.txt`（≈70 MB）不会随仓库分发。请从 [ORB-SLAM3 官方仓库](https://github.com/UZ-SLAMLab/ORB_SLAM3/tree/master/Vocabulary) 下载 `ORBvoc.txt.tar.gz` 与 `LSDvoc.txt`，或在已有安装中复制，解压后放入本仓库的 `Vocabulary/` 目录。
+> - **数据集放置**：推荐在仓库同级创建 `datasets/` 目录，例如 `../datasets/EuRoC/MH_01_easy/`，命令行中的 `SEQUENCE` 与时间戳文件路径需指向对应数据集位置（可以使用绝对路径或相对路径，如 `./datasets/EuRoC/MH_01_easy`）。
+> - **典型运行命令**：完成 `./build.sh` 后，可执行
+>   ```
+>   ./Examples/Stereo-Line/stereo_line_euroc \
+>     ./Vocabulary/ORBvoc.txt ./Vocabulary/LSDvoc.txt \
+>     ./Examples/Stereo-Line/EuRoC.yaml \
+>     ./datasets/EuRoC/MH_01_easy \
+>     ./Examples/Stereo-Line/EuRoC_TimeStamps/MH_01_easy.txt
+>   ```
+>   其他模式（如 UMA、ROS、Only-Line）请参考下文各节说明。
+
 # ORB-LINE-SLAM
 
 **Authors:** Ioannis Alamanos, Costas Tzafestas.
