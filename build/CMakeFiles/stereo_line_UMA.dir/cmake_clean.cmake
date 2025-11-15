@@ -1,7 +1,8 @@
 file(REMOVE_RECURSE
+  "/home/nekomirra/ORB-Slam/ORB_SLAM3_LINE/Examples/Stereo-Line/stereo_line_UMA"
+  "/home/nekomirra/ORB-Slam/ORB_SLAM3_LINE/Examples/Stereo-Line/stereo_line_UMA.pdb"
   "CMakeFiles/stereo_line_UMA.dir/Examples/Stereo-Line/stereo_line_UMA.cc.o"
-  "../Examples/Stereo-Line/stereo_line_UMA.pdb"
-  "../Examples/Stereo-Line/stereo_line_UMA"
+  "CMakeFiles/stereo_line_UMA.dir/Examples/Stereo-Line/stereo_line_UMA.cc.o.d"
 )
 
 # Per-language clean rules from dependency scanning.

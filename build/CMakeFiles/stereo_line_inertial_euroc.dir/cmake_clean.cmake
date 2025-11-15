@@ -1,7 +1,8 @@
 file(REMOVE_RECURSE
+  "/home/nekomirra/ORB-Slam/ORB_SLAM3_LINE/Examples/Stereo-Line-Inertial/stereo_line_inertial_euroc"
+  "/home/nekomirra/ORB-Slam/ORB_SLAM3_LINE/Examples/Stereo-Line-Inertial/stereo_line_inertial_euroc.pdb"
   "CMakeFiles/stereo_line_inertial_euroc.dir/Examples/Stereo-Line-Inertial/stereo_line_inertial_euroc.cc.o"
-  "../Examples/Stereo-Line-Inertial/stereo_line_inertial_euroc.pdb"
-  "../Examples/Stereo-Line-Inertial/stereo_line_inertial_euroc"
+  "CMakeFiles/stereo_line_inertial_euroc.dir/Examples/Stereo-Line-Inertial/stereo_line_inertial_euroc.cc.o.d"
 )
 
 # Per-language clean rules from dependency scanning.

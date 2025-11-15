@@ -1,7 +1,8 @@
 file(REMOVE_RECURSE
+  "/home/nekomirra/ORB-Slam/ORB_SLAM3_LINE/Examples/RGB-D/rgbd_tum"
+  "/home/nekomirra/ORB-Slam/ORB_SLAM3_LINE/Examples/RGB-D/rgbd_tum.pdb"
   "CMakeFiles/rgbd_tum.dir/Examples/RGB-D/rgbd_tum.cc.o"
-  "../Examples/RGB-D/rgbd_tum.pdb"
-  "../Examples/RGB-D/rgbd_tum"
+  "CMakeFiles/rgbd_tum.dir/Examples/RGB-D/rgbd_tum.cc.o.d"
 )
 
 # Per-language clean rules from dependency scanning.

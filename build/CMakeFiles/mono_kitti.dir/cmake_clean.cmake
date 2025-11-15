@@ -1,7 +1,8 @@
 file(REMOVE_RECURSE
+  "/home/nekomirra/ORB-Slam/ORB_SLAM3_LINE/Examples/Monocular/mono_kitti"
+  "/home/nekomirra/ORB-Slam/ORB_SLAM3_LINE/Examples/Monocular/mono_kitti.pdb"
   "CMakeFiles/mono_kitti.dir/Examples/Monocular/mono_kitti.cc.o"
-  "../Examples/Monocular/mono_kitti.pdb"
-  "../Examples/Monocular/mono_kitti"
+  "CMakeFiles/mono_kitti.dir/Examples/Monocular/mono_kitti.cc.o.d"
 )
 
 # Per-language clean rules from dependency scanning.

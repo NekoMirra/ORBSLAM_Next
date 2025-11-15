@@ -25,6 +25,7 @@
 #include <sstream>
 
 #include<opencv2/core/core.hpp>
+#include<opencv2/imgcodecs/imgcodecs.hpp>
 
 #include<System.h>
 #include "ImuTypes.h"
@@ -134,7 +135,7 @@ int main(int argc, char *argv[])
         for(int ni=0; ni<nImages[seq]; ni++, proccIm++)
         {
             // Read image from file
-            im = cv::imread(vstrImageFilenames[seq][ni],CV_LOAD_IMAGE_UNCHANGED);
+            im = cv::imread(vstrImageFilenames[seq][ni],cv::IMREAD_UNCHANGED);
 
             double tframe = vTimestampsCam[seq][ni];
 

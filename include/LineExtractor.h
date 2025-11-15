@@ -23,7 +23,7 @@
 
 #include <vector>
 #include <list>
-#include <opencv/cv.h>
+#include <opencv2/opencv.hpp>
 
 #include <line_descriptor_custom.hpp>
 #include <line_descriptor/descriptor_custom.hpp>
